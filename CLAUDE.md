@@ -15,10 +15,13 @@ brar-ai-agent/
 │   ├── hubspot-crm-manager/SKILL.md
 │   ├── deal-history-tracker/SKILL.md
 │   └── CLAUDE.md
-└── brar-skills-mcp/       # MCP server (TypeScript/Node.js)
-    ├── src/index.ts
-    ├── dist/
-    └── CLAUDE.md
+├── brar-skills-mcp/       # MCP server (TypeScript/Node.js)
+│   ├── src/index.ts
+│   ├── dist/
+│   └── CLAUDE.md
+└── outlook-mcp/           # Outlook MCP server (Python)
+    ├── outlook_mcp.py
+    └── src/config/config.properties
 ```
 
 ## Repositories
@@ -106,6 +109,24 @@ npx @wonderwhy-er/desktop-commander@latest setup
 | `search_code` | Search code with ripgrep |
 | `manage_blocked_commands` | Control which commands are allowed |
 
+## Outlook MCP
+
+Provides email search across all Outlook accounts and folders including PST archives.
+
+**Config:** `outlook-mcp/src/config/config.properties`
+- `search_all_folders=true` - Search archives and all folders
+- `use_folder_traversal=true` - Enable folder traversal
+- `max_search_results=100` - Results limit
+
+### Outlook MCP Tools
+
+| Tool | Description |
+|------|-------------|
+| `check_mailbox_access` | Test connection to personal and shared mailboxes |
+| `get_email_chain` | Search emails by text in subject AND body |
+
+**Note:** Requires Outlook desktop running. Will prompt for permission on first use.
+
 ## Claude Desktop Config
 
 Location: `%APPDATA%\Claude\claude_desktop_config.json`
@@ -120,6 +141,10 @@ Location: `%APPDATA%\Claude\claude_desktop_config.json`
     "desktop-commander": {
       "command": "cmd",
       "args": ["/c", "npx", "-y", "@wonderwhy-er/desktop-commander@latest"]
+    },
+    "outlook-mcp": {
+      "command": "python",
+      "args": ["C:\\Users\\koldo\\brar-ai-agent\\outlook-mcp\\outlook_mcp.py"]
     }
   }
 }
