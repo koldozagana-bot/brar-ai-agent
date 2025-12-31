@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Revision:** 2.1.0 (2025-12-31)
+**Revision:** 2.2.0 (2025-12-31)
 
 ## Overview
 
@@ -21,6 +21,7 @@ brar-ai-agent/
 │   │   ├── SKILL.md
 │   │   ├── email_patterns.db
 │   │   └── email_discovery_v3.py
+│   ├── prospect-finder/SKILL.md
 │   └── CLAUDE.md
 ├── brar-skills-mcp/       # MCP server (TypeScript/Node.js)
 │   ├── src/index.ts
@@ -84,6 +85,7 @@ Confidence: High (15+), Medium (8-14), Low (1-7)
 | deal-history-tracker | crm | Track deal timeline with structured history in HubSpot |
 | linkedin-scraping | technical | Extract LinkedIn profiles using Playwright MCP with boolean search filters |
 | email-discovery | technical | Find professional emails using 3-tier lookup: SQL cache (152k/sec) → Snov.io → Web |
+| prospect-finder | technical | Find contacts at a company via web search + Snov.io prospect database |
 
 ## MCP Tools (brar-skills)
 
