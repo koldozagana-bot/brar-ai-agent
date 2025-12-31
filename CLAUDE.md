@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**Revision:** 2.1.0 (2025-12-31)
+
 ## Overview
 
 BRAR AI Agent is a skill-based automation system for BRAR Elettromeccanica SpA, an Italian company specializing in high-current electrical solutions for the steel industry. The system uses MCP (Model Context Protocol) to provide Claude Desktop with domain-specific skills.
@@ -14,6 +16,11 @@ brar-ai-agent/
 │   ├── follow-up-generator/SKILL.md
 │   ├── hubspot-crm-manager/SKILL.md
 │   ├── deal-history-tracker/SKILL.md
+│   ├── linkedin-scraping/SKILL.md
+│   ├── email-discovery/   # v2.0 with SQL cache
+│   │   ├── SKILL.md
+│   │   ├── email_patterns.db
+│   │   └── email_discovery_v3.py
 │   └── CLAUDE.md
 ├── brar-skills-mcp/       # MCP server (TypeScript/Node.js)
 │   ├── src/index.ts
@@ -75,6 +82,8 @@ Confidence: High (15+), Medium (8-14), Low (1-7)
 | follow-up-generator | sales | Generate professional emails/WhatsApp messages for client follow-ups |
 | hubspot-crm-manager | crm | Manage HubSpot contacts, deals, companies, and tasks |
 | deal-history-tracker | crm | Track deal timeline with structured history in HubSpot |
+| linkedin-scraping | technical | Extract LinkedIn profiles using Playwright MCP with boolean search filters |
+| email-discovery | technical | Find professional emails using 3-tier lookup: SQL cache (152k/sec) → Snov.io → Web |
 
 ## MCP Tools (brar-skills)
 
@@ -124,8 +133,12 @@ Provides email search across all Outlook accounts and folders including PST arch
 |------|-------------|
 | `check_mailbox_access` | Test connection to personal and shared mailboxes |
 | `get_email_chain` | Search emails by text in subject AND body |
+| `save_attachments` | Save email attachments to local folder by subject search |
+| `create_draft` | Create draft email (NOT sent) - saved to Drafts folder |
+| `create_reply_draft` | Create reply draft to existing email (NOT sent) |
 
 **Note:** Requires Outlook desktop running. Will prompt for permission on first use.
+**Attachments folder:** `C:\Users\koldo\brar-ai-agent\downloads`
 
 ## Claude Desktop Config
 
